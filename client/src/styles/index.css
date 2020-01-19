@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css?family=Arvo|Lora|Pacifico|Raleway&display=swap');
+
+@tailwind base;
+
+@tailwind components;
+
+.btn {
+    
+
+    @apply rounded bg-white border-gray-500 border shadow-md p-4 m-2 ;
+    
+}
+.btn:hover {
+    @apply bg-yellow-200
+}
+
+@tailwind utilities;
+
+.font-raleway {
+    font-family: 'Raleway', sans-serif;
+}
+
+.font-lora {
+    font-family: 'Lora', serif;
+}

@@ -1,0 +1,29 @@
+[
+  {
+    "food": {
+      "nutrients": {
+        "test": 1
+      }
+    },
+    "unit": "cup",
+    "amount": 1
+  },
+  {
+    "food": {
+      "nutrients": {
+        "test": 2
+      }
+    },
+    "unit": "cup",
+    "amount": 1
+  },
+  {
+    "food": {
+      "nutrients": {
+        "test": 3
+      }
+    },
+    "unit": "cup",
+    "amount": 1
+  }
+]

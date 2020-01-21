@@ -71,6 +71,7 @@ const AddIngredient = ({ setIngredientData, ingredientData, ingredientAddedNotif
 
   //   *** Add ingredient data to ingredient array  ***
   const ingredientToList = async () => {
+    setAutoCompleteData([]);
     if (isValitdated) {
       axios
         .get('https://api.edamam.com/api/food-database/parser?ingr=' + ingredient + '&app_id=d22c1824&app_key=b5f6e2d07fd95dbe265ba3173fa3643a')
@@ -90,19 +91,26 @@ const AddIngredient = ({ setIngredientData, ingredientData, ingredientAddedNotif
 
   return (
     <div className="relative">
-      <div className="flex justify-center items-center">
+      <div className="flex  items-center flex-row flex-wrap">
         <label htmlFor="name" className="p-2">
-          ingredient
+          Ingredient
         </label>
-        <input onChange={changeHandler} name="ingredient" value={ingredient} type="text" className="bg-blue-100 p-2 w-1/2 focus:outline-none" />
+        <input
+          onChange={changeHandler}
+          onFocus={() => setAutoCompleteData([])}
+          name="ingredient"
+          value={ingredient}
+          type="text"
+          className="bg-blue-100 p-2 w-1/2 focus:outline-none"
+        />
         <label htmlFor="amount" className="p-2">
           amount
         </label>
-        <input onChange={changeHandler} name="amount" value={amount} type="number" className="bg-blue-100 p-2 w-1/6" />
+        <input onChange={changeHandler} onFocus={() => setAutoCompleteData([])} name="amount" value={amount} type="number" className="bg-blue-100 p-2 w-1/6" />
 
         <div className="w-1/4 flex m-2">
           {/* <label htmlFor='measurement' className='p-2 w-1/2'>Unit</label> */}
-          <Select value={measurementUnit} onChange={selectHandler} label={measurementUnit} options={selectOptions} className="w-full" placeholder="unit" name={measurementUnit} />
+          <Select onChange={selectHandler} label={measurementUnit} options={selectOptions} className="w-full" placeholder="unit" name={measurementUnit} />
         </div>
 
         <button onClick={ingredientToList} className="btn bg-green-200 p-2">

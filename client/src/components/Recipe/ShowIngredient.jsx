@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import unitConversion from '../../utils/unitConversion';
 
-const ShowIngredient = ({ itemData, ingredientData, setIngredientData }) => {
+const ShowIngredient = ({ itemData, ingredientData, setIngredientData, ingredientRemoveNotify }) => {
   const [imageSrc, setImageSrc] = useState('');
 
   useEffect(() => {
@@ -22,6 +22,7 @@ const ShowIngredient = ({ itemData, ingredientData, setIngredientData }) => {
       dataTemp.splice(index, 1);
       setIngredientData(dataTemp);
     }
+    ingredientRemoveNotify(itemData.food.label);
   };
 
   const netCarbs = (

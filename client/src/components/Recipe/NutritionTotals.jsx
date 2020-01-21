@@ -16,13 +16,13 @@ const NutritionTotals = ({ ingredientData }) => {
     }
   };
 
-  const nanToZero = num => {
-    if (isNaN(num)) {
-      return 0;
-    } else {
-      return num;
-    }
-  };
+  // const nanToZero = num => {
+  //   if (isNaN(num)) {
+  //     return 0;
+  //   } else {
+  //     return num;
+  //   }
+  // };
 
   const nutrients = {
     calories: getTotal('ENERC_KCAL'),

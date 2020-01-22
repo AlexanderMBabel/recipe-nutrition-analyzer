@@ -8,7 +8,7 @@ const ShowIngredient = ({ itemData, ingredientData, setIngredientData, ingredien
 
   useEffect(() => {
     axios
-      .get('https://pixabay.com/api/?key=14961132-3882de5a02bb912705c80926c&q=' + itemData.food.label + '&image_type=photo&category=food')
+      .get(process.env.REACT_APP_PIXABAY + itemData.food.label + '&image_type=photo&category=food')
       .then(result => {
         setImageSrc(result.data.hits[0].webformatURL);
       })

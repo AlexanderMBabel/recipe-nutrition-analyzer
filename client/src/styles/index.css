@@ -5,21 +5,35 @@
 @tailwind components;
 
 .btn {
-    
-
-    @apply rounded bg-white border-gray-500 border shadow-md p-4 m-2 ;
-    
+  @apply rounded bg-white border-gray-500 border shadow-md p-4 m-2;
 }
 .btn:hover {
-    @apply bg-yellow-200
+  @apply bg-yellow-200;
 }
 
 @tailwind utilities;
 
 .font-raleway {
-    font-family: 'Raleway', sans-serif;
+  font-family: 'Raleway', sans-serif;
 }
 
 .font-lora {
-    font-family: 'Lora', serif;
+  font-family: 'Lora', serif;
+}
+
+.font-pacifico {
+  font-family: 'Pacifico';
+}
+
+.font-arvo {
+  font-family: 'Arvo';
+}
+
+.rotate-45 {
+  transform: rotate(-45deg);
+}
+
+.input-outline:focus {
+  outline-style: groove;
+  outline-color: lightblue;
 }

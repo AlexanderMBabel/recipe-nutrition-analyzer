@@ -2,13 +2,13 @@ import firebase from 'firebase';
 import 'firebase/firestore';
 
 const config = {
-  apiKey: 'AIzaSyAgjYwhTway9p6MW4YMbuEqHE7vpoSLLZU',
-  authDomain: 'recipe-nutrition-86d1a.firebaseapp.com',
-  databaseURL: 'https://recipe-nutrition-86d1a.firebaseio.com',
-  projectId: 'recipe-nutrition-86d1a',
-  storageBucket: 'recipe-nutrition-86d1a.appspot.com',
-  messagingSenderId: '332446045570',
-  appId: '1:332446045570:web:e8151c44cf786f9f416b9b'
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  databaseURL: process.env.REACT_APP_FIREBASE_DATABASE_URL,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID
 };
 
 firebase.initializeApp(config);

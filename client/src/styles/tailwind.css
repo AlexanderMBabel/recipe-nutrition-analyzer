@@ -636,7 +636,7 @@ video {
 }
 
 .btn:hover {
-  background-color: #fefcbf
+  background-color: #fefcbf;
 }
 
 .sr-only{
@@ -10661,6 +10661,24 @@ video {
 
 .font-lora {
   font-family: 'Lora', serif;
+}
+
+.font-pacifico {
+  font-family: 'Pacifico';
+}
+
+.font-arvo {
+  font-family: 'Arvo';
+}
+
+.rotate-45 {
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}
+
+.input-outline:focus {
+  outline-style: groove;
+  outline-color: lightblue;
 }
 
 @media (min-width: 640px){

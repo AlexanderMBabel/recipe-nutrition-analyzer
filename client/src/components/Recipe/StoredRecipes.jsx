@@ -31,7 +31,7 @@ const StoredRecipes = ({ setIngredientData, setAddRecipeShown, setShowImports, s
   };
 
   return (
-    <div className="flex">
+    <div className="flex flex-wrap">
       {recipes.map(recipe => (
         <div key={recipe.name}>
           <button

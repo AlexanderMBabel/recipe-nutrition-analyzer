@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Select from 'react-select';
 
-const edamamBase = 'http://api.edamam.com/auto-complete?q=';
-const edamamEnd = `limit=10&app_id=${process.env.REACT_APP_APP_ID}&app_key=${process.env.REACT_APP_APP_KEY}`;
+const edamamAutocompleteBase = 'http://api.edamam.com/auto-complete?q=';
+const edamamIngredientBase = 'https://api.edamam.com/api/food-database/parser?ingr=';
 
 const selectOptions = [
   { value: 'gram', label: 'grams' },
@@ -23,7 +23,7 @@ const AddIngredient = ({ setIngredientData, ingredientData, ingredientAddedNotif
 
   useEffect(() => {
     if (ingredient !== '') {
-      axios(edamamBase + ingredient + '&limit=10&app_id=d22c1824&app_key=b5f6e2d07fd95dbe265ba3173fa3643a')
+      axios(edamamAutocompleteBase + ingredient + process.env.REACT_APP_AUTOCOMPLETE_END)
         .then(results => {
           setAutoCompleteData(results.data);
         })
@@ -46,6 +46,7 @@ const AddIngredient = ({ setIngredientData, ingredientData, ingredientAddedNotif
     }
   };
   const chooseHandler = e => {
+    setAutoCompleteData([]);
     setIngredient(e.currentTarget.dataset.item);
   };
   // change the state on measurementUnit with select box
@@ -74,7 +75,7 @@ const AddIngredient = ({ setIngredientData, ingredientData, ingredientAddedNotif
     setAutoCompleteData([]);
     if (isValitdated) {
       axios
-        .get('https://api.edamam.com/api/food-database/parser?ingr=' + ingredient + '&app_id=d22c1824&app_key=b5f6e2d07fd95dbe265ba3173fa3643a')
+        .get(edamamIngredientBase + ingredient + process.env.REACT_APP_EDAMAM_END)
         .then(results => {
           let itemObj = results.data.hints[0];
           itemObj.amount = amount;
@@ -92,32 +93,28 @@ const AddIngredient = ({ setIngredientData, ingredientData, ingredientAddedNotif
   return (
     <div className="relative">
       <div className="flex  items-center flex-row flex-wrap">
-        <label htmlFor="name" className="p-2">
-          Ingredient
-        </label>
-        <input
-          onChange={changeHandler}
-          onFocus={() => setAutoCompleteData([])}
-          name="ingredient"
-          value={ingredient}
-          type="text"
-          className="bg-blue-100 p-2 w-1/2 focus:outline-none"
-        />
-        <label htmlFor="amount" className="p-2">
-          amount
-        </label>
-        <input onChange={changeHandler} onFocus={() => setAutoCompleteData([])} name="amount" value={amount} type="number" className="bg-blue-100 p-2 w-1/6" />
-
-        <div className="w-1/4 flex m-2">
-          {/* <label htmlFor='measurement' className='p-2 w-1/2'>Unit</label> */}
-          <Select onChange={selectHandler} label={measurementUnit} options={selectOptions} className="w-full" placeholder="unit" name={measurementUnit} />
+        <div id="ingredient-name" className="w-full p-2">
+          <label htmlFor="name" className="p-2">
+            Ingredient
+          </label>
+          <input onChange={changeHandler} name="ingredient" value={ingredient} type="text" className="bg-blue-100 p-2 w-full input-outline " placeholder="swiss cheese" />
         </div>
-
-        <button onClick={ingredientToList} className="btn bg-green-200 p-2">
-          add
-        </button>
+        <div id="ingredient-amount" className=" w-1/2 p-2">
+          <label htmlFor="amount" className="p-2 w-1/4">
+            Amount
+          </label>
+          <input onChange={changeHandler} onFocus={() => setAutoCompleteData([])} name="amount" value={amount} type="number" className="bg-blue-100 p-2 w-full input-outline" />
+        </div>
+        <div className="w-1/2  flex p-2 ">
+          <Select onChange={selectHandler} label={measurementUnit} options={selectOptions} className="w-full align-bottom" placeholder="unit" name={measurementUnit} />
+        </div>
+        <div className="w-full  flex jusitfy-center">
+          <button onClick={ingredientToList} className="btn bg-green-200 p-2 w-full ">
+            Add
+          </button>
+        </div>
       </div>
-      <div className="flex-row flex-wrap showdow-md border border-blue-100">
+      <div className="flex-row flex-wrap showdow-md  w-full">
         {autoCompleteData.map(item => (
           <p onClick={chooseHandler} className="hover:bg-orange-100 " key={item} data-item={item}>
             {item}
